@@ -27,5 +27,8 @@ module.exports = {
      } else {
          return ''
      }
+ },
+ isStatusMatched: function(blog, status) {
+     return blog && blog.status === status
  }
 };

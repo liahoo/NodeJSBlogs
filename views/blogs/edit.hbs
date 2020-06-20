@@ -1,5 +1,5 @@
-<h3>Edit blog</h3>
-<form action="/blogs/edit" method="POST" class="col s12">
+<h3>{{#if blog}}Edit{{else}}Write a new{{/if}} blog</h3>
+<form action="/blogs/{{#if blog}}{{blog._id}}{{/if}}" method="POST" class="col s12">
   <div class="row">
     <div class="input-field col s12">
       <input id="title" name="title" type="text" value="{{blog.title}}">
@@ -9,17 +9,17 @@
   <div class="row">
     <div class="input-field col s12">
       <select id="status" name="status">
-        <option value="public" selected>Public</option>
-        <option value="private">Private</option>
+        <option value="public" {{#if (isStatusMatched blog 'public')}}selected{{/if}}>Public</option>
+        <option value="private" {{#if (isStatusMatched blog 'private')}}selected{{/if}}>Private</option>          
       </select>
       <label for='status'>Status</label>
     </div>
   </div>
 
   <div class="row">
-    <div class="input-field col s12">
+    <div class="input-field col s12 blog-body">
       <h5>Body</h5>
-      <textarea id="body" name='body' class="materialize-textarea">{{blog.body}}</textarea>
+      <textarea id="editor" name='body' class="materialize-textarea blog-body">{{#if blog}}{{blog.body}}{{/if}}</textarea>
     </div>
   </div>
   <div class="row center">

@@ -1,3 +1,9 @@
+body {
+    background: rgba(233,233,233,1);
+}
+nav {
+    background: rgba(0,0,0,1);
+}
 p {
     margin: 10px 0 !important;
 }
@@ -10,4 +16,26 @@ p {
 
 .fa-small {
     font-size: 16px !important;
+}
+.blog-subtitle {
+    display: flex;
+    margin: 1rem;
+}
+.blog-body {
+    min-height: 300px!important;
+}
+.blogger-name {
+    margin: auto .75rem;
+}
+.blog-date {
+    margin-left: auto;
+}
+.img-small {
+    width: 30px!important;
+    height: 30px!important;
+}
+.img-medium {
+    width: 80px!important;
+    margin: 20px;
+    height: 80px!important;
 }

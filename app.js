@@ -30,13 +30,13 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Handlebars Helpers
-const { formatDate, stripTags, truncate, editIcon } = require("./helpers/hbs");
+const { formatDate, stripTags, truncate, editIcon, isStatusMatched } = require("./helpers/hbs");
 
 // Handlebars
 app.engine(
  ".hbs",
  exphbs({
-  helpers: { formatDate, stripTags, truncate, editIcon },
+  helpers: { formatDate, stripTags, truncate, editIcon, isStatusMatched },
   defaultLayout: "main",
   extname: ".hbs",
  })
@@ -57,11 +57,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Set global var
-// app.use(function (req, res, next) {
-//  res.locals.user = req.user;
-// });
-
 // Static folder
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -69,6 +64,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
 app.use("/blogs", require("./routes/blogs"));
+app.use("/files", require("./routes/files"));
 
 const PORT = process.env.PORT || 3000;
 
