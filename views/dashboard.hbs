@@ -19,12 +19,25 @@
       <td><span>{{status}}</span></td>
       <td>
         <a href="/blogs/edit/{{_id}}" class="btn btn-flat"><i class="fas fa-edit fa-small"></i></a>
-        <a href="/blogs/delete/{{_id}}" class="btn btn-flat"><i class="fas fa-trash fa-small red-text"></i></a>
+        <a href="#modalDelete" id='{{_id}}' class="waves-effect waves-light btn btn-flat action-delete modal-trigger">
+          <i class="fas fa-trash fa-small red-text"></i>
+        </a>
       </td>
     </tr>
     {{/each}}
   </tbody>
 </table>
+<!-- Modal Structure -->
+<div id="modalDelete" class="modal">
+  <div class="modal-content">
+    <h4>Confirm</h4>
+    <p>Are you sure to delete?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat red-text btn-delete">Delete</a>
+  </div>
+</div>
 {{else}}
 <p>You have not created any blogs</p>
 {{/if}}

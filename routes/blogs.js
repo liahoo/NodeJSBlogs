@@ -108,10 +108,10 @@ router.delete("/:id", ensureAuth, async (req, res) => {
  try {
   req.body.user = req.user.id;
   await Blog.deleteOne({ _id: req.params.id });
-  res.redirect("/dashboard");
+  res.status(200).end();
  } catch (err) {
   console.error(err);
-  res.render("error/500");
+  res.status(204).end();
  }
 });
 
