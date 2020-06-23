@@ -7,7 +7,7 @@ const Blog = require('../models/Blog')
 // @desc    Login/Landing Page
 // @route   GET /
 router.get('/', ensureGuest, (req, res) => {
-    res.render('Login', {
+    res.render('login', {
         layout: 'login'
     })
 })
@@ -17,7 +17,7 @@ router.get('/', ensureGuest, (req, res) => {
 router.get('/dashboard', ensureAuth, async (req, res) => {
     try {
         const blogs = await Blog.find({user: req.user.id}).lean()
-        res.render('Dashboard', {
+        res.render('dashboard', {
             name: req.user.displayName,
             blogs: blogs
         })
