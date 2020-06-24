@@ -6,13 +6,17 @@ const morgan = require("morgan");
 const exphbs = require("express-handlebars");
 const passport = require("passport");
 const session = require("express-session");
+const fileUpload = require('express-fileupload');
+
 const MongoStore = require("connect-mongo")(session);
 
 const connectDB = require("./config/db");
 
-dotenv.config({ path: "./config/config.env" });
-
 if (process.env.NODE_ENV === "development") {
+    dotenv.config({ path: "./config/config.dev.env" });
+} else {
+    dotenv.config({ path: "./config/config.env" });
+}
 // Passport config
 require("./config/passport")(passport);
 
@@ -22,8 +26,9 @@ connectDB();
 const app = express();
 
 // Body parser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(fileUpload());
 
 // Morgan for Loggin
 if (process.env.NODE_ENV === "development") {
